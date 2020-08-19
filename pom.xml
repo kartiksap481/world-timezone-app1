@@ -38,6 +38,7 @@
 				<uri>https://anypoint.mulesoft.com/</uri>
 				<username>karthik_jen</username>
 				<environment>Sandbox</environment>
+				<objectStoreV2>true</objectStoreV2>
 				<workers>1</workers>
 				<workerType>Micro</workerType>
 				<applicationName>worldtimezone-service-CICD</applicationName>
