@@ -36,7 +36,7 @@
 				<configuration>
 				<cloudHubDeployment>
 				<uri>https://anypoint.mulesoft.com/</uri>
-				<username>karthik-ap</username>
+				<username>karthik-jen</username>
 				<environment>Sandbox</environment>
 				<workers>1</workers>
 				<workerType>Micro</workerType>
