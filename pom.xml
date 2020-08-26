@@ -5,7 +5,7 @@
 
 	<groupId>com.mycompany</groupId>
 	<artifactId>world-demo-api</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>mule-application</packaging>
 
 	<name>world-demo-api</name>
@@ -20,7 +20,13 @@
 		<app.runtime>4.3.0</app.runtime>
 		<mule.maven.plugin.version>3.3.5</mule.maven.plugin.version>
 	</properties>
-
+<distributionManagement>
+   <snapshotRepository>
+      <id>nexus-snapshots</id>
+      <url>http://localhost:8088/nexus/content/repositories/snapshots</url>
+   </snapshotRepository>
+    </distributionManagement>
+    
 	<build>
 		<plugins>
 			<plugin>
@@ -29,10 +35,36 @@
 				<version>3.0.0</version>
 			</plugin>
 			<plugin>
+			  <groupId>org.sonatype.plugins</groupId>
+   <artifactId>nexus-staging-maven-plugin</artifactId>
+   <version>1.5.1</version>
+   
+    <executions>
+      <execution>
+         <id>default-deploy</id>
+         <phase>deploy</phase>
+         <goals>
+            <goal>deploy</goal>
+         </goals>
+      </execution>
+   </executions>
+   
+    <configuration>
+      <serverId>nexus</serverId>
+      <nexusUrl>http://localhost:8088/nexus/</nexusUrl>
+      <skipStaging>true</skipStaging>
+   </configuration>
+   
+            </plugin>
+			<plugin>
+			
 				<groupId>org.mule.tools.maven</groupId>
 				<artifactId>mule-maven-plugin</artifactId>
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
+				
+				
+				
 				<configuration>
 				<cloudHubDeployment>
 				<uri>https://anypoint.mulesoft.com/</uri>
@@ -46,6 +78,8 @@
 				<muleVersion>4.3.0</muleVersion>
 				</cloudHubDeployment>
 				</configuration>
+				
+				
 				<executions>
   <execution>
     <id>deploy</id>
@@ -55,10 +89,12 @@
     </goals>
   </execution>
 </executions>
+
+
+
 			</plugin>
 		</plugins>
-		
-	</build>
+		</build>
 
 	<dependencies>
         <dependency>
